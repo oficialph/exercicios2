@@ -1,0 +1,298 @@
+1-
+O método dedutivo é usado quando já se conhece a lógica.
+Exemplo: um número é par se a divisão por 2 for 0.
+
+def eh_par():
+    n=int(input("Digite um n: "))
+    if n%2==0:
+        print("É par")
+    else:
+        print("Ímpar")
+
+eh_par()
+
+Já o indutivo, analisa padrões para fazer uma previsão:
+Exemplo: 
+
+for i in range(1,101):
+    if i%2==0:
+        continue
+    else:
+        print(i)
+        
+O código analiza uma base de dados e identifica que quando um número for par, ele deve pular para o número seguinte.
+
+2-
+Existem váriaveis locais, que ficam apenas dentro de funções, e não intaregem com o código fora dela.
+Ex: def exemplo():
+        variavel=0 (essa variável apenas existe dentro da função exemplo.
+
+E também existem variáveis globais, que interagem com o código inteiro:
+Exemplo:
+Vendas=0
+
+Também temos variáveis que são preenchidas pelo usuário, entre ela temos: int (números inteiros), (float) (números quebrados), str (letras) e bool que apresenta valores lógicos.
+Exemplo de cada uma:
+n=int(input("Digite um número inteiro: "))
+n2=float(input("Digite um número quebrado: "))
+frase=(input("Digite uma sequência de carácteres: ")) (str não necessita ser escrito)
+Já o bool utiliza valores os lógicos True e False, para verdadeiro ou falso. Ex: verdadeiro=true
+
+3-
+O operador < indica Maior que.
+Ex:
+teste=1
+if teste<5:
+  print("Verdadeiro")
+
+O operador > indica Menor que.
+Ex:
+teste=1
+if teste>5:
+  print("Verdadeiro")
+
+Também pode ser usado <= (menor ou igual) e >= (maior ou igual).
+
+Já o operador "=" indica o valor que a variável irá receber.
+Ex: teste=1 (teste recebe o valor 1)
+
+Usamos "==", quando queremos nos referir ao igual.
+Ex:
+teste=1
+if teste==1:
+  print("Verdadeiro")
+
+O operador "!=" significa diferente de.
+Ex:
+teste=1
+if teste!=1
+  print("Verdadeiro")
+
+AND significa "e":
+Ex:
+teste=1
+teste2=2
+if teste=1 and teste2=2
+  print("Verdadeiro")
+
+O operador NOT inverte o valor lógico de uma condição.
+Ex:
+acesso = False
+if not acesso:
+    print("Acesso negado")
+
+E o OR retorna verdadeiro se ao menos uma condição for verdadeira.
+Ex:
+chuva = True
+tem_guarda_chuva = False
+if chuva or tem_guarda_chuva:
+    print("Você está protegido da chuva")
+
+4-
+If Verifica uma condição. Se for verdadeira, executa o bloco de código associado, já o elif (abreviação de else if) Verifica uma nova condição caso a anterior seja falsa
+e o else define um bloco que será executado se todas as condições anteriores forem falsas.
+Ex:
+idade = int(input("Digite sua idade: "))
+sexo = input("Digite seu sexo (M para masculino, F para feminino): ").upper()
+
+if idade < 18:
+    if sexo == "M":
+        print("Menor de idade - Homem")
+    elif sexo == "F":
+        print("Menor de idade - Mulher")
+    else:
+        print("Sexo inválido.")
+elif 18 <= idade < 60:
+    if sexo == "M":
+        print("Adulto - Homem")
+    elif sexo == "F":
+        print("Adulta - Mulher")
+    else:
+        print("Sexo inválido.")
+else:
+    if sexo == "M":
+        print("Idoso - Homem")
+    elif sexo == "F":
+        print("Idosa - Mulher")
+    else:
+        print("Sexo inválido.")
+
+5-
+A condição 18 <= idade <= 59 and sexo == "M" será verdadeira para idade = 30 e sexo = "M". Se o sexo for diferente de 'M' ou 'F', o programa exibirá 'Dados inválidos'.
+O else cobre casos onde nenhuma condição é atendida, incluindo sexos inválidos.
+Resultado: Verdadeiro. Para uma idade de 10 e sexo feminino, o programa exibirá 'Mulher adulta'. Análise:
+A condição para "Mulher adulta" exige 18 <= idade <= 59 and sexo == "F". Para idade = 10, isso será falso.
+
+6-
+from itertools import product
+
+combinacoes = list(product([False, True], repeat=3))
+
+resultados = []
+for A, B, C in combinacoes:
+    res1 = A or (B and C)        
+    res2 = not A and B and C     
+    res3 = not (A and B and not C) 
+    resultados.append((A, B, C, res1, res2, res3))
+
+print(" A    B    C   A||(B&&C)  !A&&B&&C  !(A&&B&&!C)")
+for linha in resultados:
+    print(f"{linha[0]:<5}{linha[1]:<5}{linha[2]:<7}{linha[3]:<11}{linha[4]:<10}{linha[5]}")
+
+7-
+from itertools import product
+
+combinacoes = list(product([False, True], repeat=3))
+
+print(" P     Q     R     P||Q   (P||Q) -> R")
+for P, Q, R in combinacoes:
+    p_ou_q = P or Q             
+    implicacao = not p_ou_q or R
+    print(f"{P:<6}{Q:<6}{R:<6}{p_ou_q:<8}{implicacao}")
+
+8-
+n1 = int(input("Digite o primeiro número: "))
+n2 = int(input("Digite o segundo número: "))
+n3 = int(input("Digite o terceiro número: "))
+
+maior = n1
+if n2 > maior:
+    maior = n2
+if n3 > maior:
+    maior = n3
+
+print(f"O maior número é: {maior}")
+
+9-
+renda = float(input("Renda mensal: "))
+credito = int(input("Pontuação de crédito: "))
+despesas = float(input("Despesas mensais: "))
+
+renda_liquida = renda - despesas
+
+if renda_liquida > 0 and credito >= 600:
+    parcela = float(input("Valor da parcela: "))
+    if parcela <= 0.3 * renda_liquida:
+        print("Elegível para o empréstimo.")
+    else:
+        print("Parcela acima de 30% da renda líquida.")
+else:
+    print("Não elegível para o empréstimo.")
+
+10-
+No while, controlamos o índice manualmente com i e verificamos a condição i < len(numeros) em cada iteração.
+No for, iteramos diretamente pelos valores da lista numeros, simplificando o código.
+
+numeros = list(range(1, 11))
+i = 0
+while i < len(numeros):
+    print(f"O quadrado de {numeros[i]} é {numeros[i] ** 2}")
+    i += 1
+
+numeros = list(range(1, 11))
+for numero in numeros:
+    print(f"O quadrado de {numero} é {numero ** 2}")
+
+11-
+def calcular_media(n1, n2):
+    media=n1+n2/2
+    return media
+
+print(calcular_media(coloque aqui seus números de escolha))
+
+12-
+o método remove removo um item em específico. exemplo:
+lista=['guitarra', 'teclado', 'bateria']
+lista.remove('teclado')
+print(lista)
+
+a saída será: [guitarra, bateria]
+
+já o pop remove o último item da lista. exemplo:
+lista=['guitarra', 'teclado', 'bateria']
+lista..pop()
+print(lista)
+
+a saída será: [guitarra, teclado]
+
+13-
+for i in range(10):
+    if i==3:
+        continue
+    elif i==5:
+        break
+    print(i)
+
+14-
+def remover_duplicados(lista):
+    unicos = []
+    for num in lista:
+        if num not in unicos:
+            unicos.append(num)
+    return unicos
+
+numeros = input("Digite os números separados por espaço: ").split()
+numeros = [int(num) for num in numeros] 
+
+resultado = remover_duplicados(numeros)
+
+print(f"Lista original: {numeros}")
+print(f"Lista sem duplicados: {resultado}")
+
+15-
+import random
+
+numero = random.randint(1, 100)
+print("Adivinhe o número entre 1 e 100!")
+
+while True:
+    palpite = int(input("Seu palpite: "))
+    if palpite < numero:
+        print("Muito baixo!")
+    elif palpite > numero:
+        print("Muito alto!")
+    else:
+        print("Parabéns! Você acertou!")
+        break
+
+tarefas = []
+opcao = 0
+
+while opcao != 4:
+    print("1. Adicionar tarefa")
+    print("2. Visualizar tarefas")
+    print("3. Remover tarefa")
+    print("4. Sair")
+    
+    opcao = int(input("Escolha uma opção: "))
+
+    if opcao == 1:
+        tarefa = input("Digite a nova tarefa: ")
+        tarefas.append(tarefa)
+    elif opcao == 2:
+        print("\nTarefas:")
+        for i, tarefa in enumerate(tarefas):
+            print(f"{i}. {tarefa}")
+        print()
+    elif opcao == 3:
+        indice = int(input("Digite o índice da tarefa para remover: "))
+        if 0 <= indice < len(tarefas):
+            tarefas.pop(indice)
+        else:
+            print("Índice inválido.")
+    elif opcao == 4:
+        print("Encerrando o programa.")
+    else:
+        print("Opção inválida.\n")
+
+
+
+
+
+
+
+
+
+
+
+
